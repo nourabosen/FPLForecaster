@@ -25,8 +25,8 @@ The pipeline consists of four main stages:
 
 ```
 .
-├── __pycache__/         # Python cache files.
 ├── src/
+│   ├── __pycache__/         # Python cache files.
 │   ├── data_ingestion.py     # Downloads data from GitHub and saves it locally.
 │   ├── data_processing.py    # Loads local data, computes new features, normalizes data, and creates LSTM input sequences.
 │   ├── model.py              # Defines, trains, and tunes the LSTM/GRU model; includes prediction functions.
@@ -57,8 +57,6 @@ pip install -r requirements.txt
     ```
 2.  **Run the Full Pipeline**:
     - Open the Streamlit dashboard in your browser.
-    - Click the "Run Full Pipeline" button to ingest data, process it, train the model, and generate predictions.
-
 **Acknowledgements**
 
 This project is based on the work from [bipan-sh/fpl-prediction-lstm](https://github.com/bipan-sh/fpl-prediction-lstm?tab=readme-ov-file) and uses data from [vaastav/Fantasy-Premier-League](https://github.com/vaastav/Fantasy-Premier-League/tree/master).

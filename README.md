@@ -25,8 +25,8 @@ The pipeline consists of four main stages:
 
 ```
 .
+├── __pycache__/         # Python cache files.
 ├── src/
-│   ├── __pycache__/         # Python cache files.
 │   ├── data_ingestion.py     # Downloads data from GitHub and saves it locally.
 │   ├── data_processing.py    # Loads local data, computes new features, normalizes data, and creates LSTM input sequences.
 │   ├── model.py              # Defines, trains, and tunes the LSTM/GRU model; includes prediction functions.

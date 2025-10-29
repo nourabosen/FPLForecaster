@@ -59,17 +59,25 @@ def plot_top100_price_vs_points(predictions: dict, player_gw_df: pd.DataFrame,
         merged['full_name_with_club'] = merged['full_name']
         merged['element_type'] = 0
     
-    position_colors = {1: 'blue', 2: 'green', 3: 'red', 4: 'purple'}
-    merged['color'] = merged['element_type'].map(position_colors)
-    merged['color'] = merged['color'].fillna('gray')
+    position_map = {1: 'Goalkeeper', 2: 'Defender', 3: 'Midfielder', 4: 'Forward'}
+    color_map = {
+        'Goalkeeper': 'blue',
+        'Defender': 'green',
+        'Midfielder': 'red',
+        'Forward': 'purple',
+        'Unknown': 'gray'
+    }
+    
+    merged['position'] = merged['element_type'].map(position_map).fillna('Unknown')
     
     top100 = merged.sort_values('predicted_points', ascending=False).head(100)
     
     fig = px.scatter(
         top100, x='dollar_value', y='predicted_points',
-        color='color', hover_name='full_name_with_club',
-        labels={'dollar_value': 'Price ($)', 'predicted_points': 'Predicted Fantasy Points'},
-        title='Top 100 Players by Predicted Fantasy Points vs Price'
+        color='position', hover_name='full_name_with_club',
+        labels={'dollar_value': 'Price ($)', 'predicted_points': 'Predicted Fantasy Points', 'position': 'Position'},
+        title='Top 100 Players by Predicted Fantasy Points vs Price',
+        color_discrete_map=color_map
     )
     fig.update_traces(marker=dict(size=10, line=dict(width=1, color='black')))
     return fig
